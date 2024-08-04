@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import anime from 'animejs';
-import { FaReact, FaNodeJs, FaDatabase, FaGitAlt } from 'react-icons/fa';
-import { SiJavascript, SiTailwindcss, SiExpress, SiMongodb, SiMysql, SiWordpress, SiReact as SiReactNative, SiAdobephotoshop, SiAdobeillustrator } from 'react-icons/si';
+import { FaReact, FaNodeJs, FaDatabase, FaGitAlt, FaAndroid, FaHtml5, FaCss3Alt } from 'react-icons/fa';
+import { SiJavascript, SiTailwindcss, SiExpress, SiMongodb, SiMysql, SiWordpress, SiReact as SiReactNative, SiAdobephotoshop, SiAdobeillustrator, SiNextdotjs, SiPython, SiPhp, SiDjango, SiLaravel, SiGithub, SiAmazonaws, SiFigma, SiAdobexd, SiGraphql, SiNginx, SiRedux, SiAntdesign,SiBulma } from 'react-icons/si';
 
+// Updated skills array with new technologies
 const skills = [
   { name: 'JavaScript', icon: <SiJavascript className="text-4xl text-yellow-500" /> },
   { name: 'React', icon: <FaReact className="text-4xl text-blue-500" /> },
@@ -20,7 +21,35 @@ const skills = [
   { name: 'Illustrator', icon: <SiAdobeillustrator className="text-4xl text-orange-600" /> },
   { name: 'Stock Trader/Investor', icon: <FaDatabase className="text-4xl text-gray-700" /> },
   { name: 'Premiere Pro', icon: <SiAdobephotoshop className="text-4xl text-yellow-500" /> },
-  { name: 'Digital Marketing', icon: <FaDatabase className="text-4xl text-green-500" /> }
+  { name: 'Digital Marketing', icon: <FaDatabase className="text-4xl text-green-500" /> },
+  { name: 'Next.js', icon: <SiNextdotjs className="text-4xl text-black" /> },
+  { name: 'Python', icon: <SiPython className="text-4xl text-blue-400" /> },
+  { name: 'Crypto Trader/Investor', icon: <FaDatabase className="text-4xl text-gray-700" /> },
+  { name: 'Django', icon: <SiDjango className="text-4xl text-green-600" /> },
+  { name: 'PHP', icon: <SiPhp className="text-4xl text-blue-600" /> },
+  { name: 'Laravel', icon: <SiLaravel className="text-4xl text-red-600" /> },
+  { name: 'Android Studio', icon: <FaAndroid className="text-4xl text-green-500" /> },
+  { name: 'GitHub', icon: <SiGithub className="text-4xl text-black" /> },
+  { name: 'Amazon AWS', icon: <SiAmazonaws className="text-4xl text-orange-500" /> },
+  { name: 'Figma', icon: <SiFigma className="text-4xl text-purple-500" /> },
+  { name: 'Adobe XD', icon: <SiAdobexd className="text-4xl text-pink-500" /> },
+  { name: 'After Effects', icon: <FaDatabase className="text-4xl text-blue-600" /> },
+  { name: 'SEO', icon: <FaDatabase className="text-4xl text-gray-700" /> },
+  { name: 'Social Media Managing', icon: <FaDatabase className="text-4xl text-gray-700" /> },
+  { name: 'Social Media Marketing', icon: <FaDatabase className="text-4xl text-gray-700" /> },
+  { name: 'Graphics Design', icon: <SiAdobephotoshop className="text-4xl text-red-500" /> },
+  // New technologies
+  { name: 'GraphQL', icon: <SiGraphql className="text-4xl text-e535ab" /> },
+  { name: 'NGINX', icon: <SiNginx className="text-4xl text-green-500" /> },
+  { name: 'Redux', icon: <SiRedux className="text-4xl text purple-500" /> },
+  { name: 'Ant Design', icon: <SiAntdesign className="text-4xl text-blue-500" /> },
+  { name: 'Material UI', icon: <FaDatabase className="text-4xl text-blue-500" /> },
+  { name: 'Bulma', icon: <SiBulma className="text-4xl text-light-blue-500" /> },
+  { name: 'HTML', icon: <FaHtml5 className="text-4xl text-orange-500" /> },
+  { name: 'CSS', icon: <FaCss3Alt className="text-4xl text-blue-500" /> },
+  { name: 'GSAP', icon: <FaDatabase className="text-4xl text-green-600" /> },
+  { name: 'Anime.js', icon: <FaDatabase className="text-4xl text-green-600" /> }, // Using GSAP icon for Anime.js
+  { name: 'Three.js', icon: <FaDatabase className="text-4xl text-black" /> }
 ];
 
 const SkillsSection = () => {
