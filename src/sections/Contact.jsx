@@ -1,8 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
+import emailjs from "emailjs-com"; // Import EmailJS
+import AOS from "aos"; // Import AOS
+import "aos/dist/aos.css"; // Import AOS CSS
+import {
+  FaEnvelope,
+  FaLinkedin,
+  FaTwitter,
+  FaInstagram,
+  FaFacebook,
+  FaWhatsapp,
+} from "react-icons/fa";
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+    number: "",
+  });
   const [formStatus, setFormStatus] = useState(null); // For form submission status
+
+  useEffect(() => {
+    AOS.init(); // Initialize AOS
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -11,34 +31,54 @@ const ContactSection = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would usually send formData to your server
     try {
-      // Mock submission
-      console.log('Form data submitted:', formData);
-      setFormStatus('success');
+      await emailjs.send(
+        "your_service_id", // Replace with your actual service ID
+        "your_template_id", // Replace with your actual template ID
+        formData,
+        "your_user_id" // Replace with your actual user ID
+      );
+      setFormStatus("success");
+      setFormData({ name: "", email: "", message: "", number: "" }); // Clear form data on success
     } catch (error) {
-      console.error('Error submitting form:', error);
-      setFormStatus('error');
+      console.error("Error submitting form:", error);
+      setFormStatus("error");
     }
   };
 
   return (
-    <section id="contact" className="py-12 bg-gradient-to-r from-blue-500 to-blue-700 text-white">
+    <section
+      id="contact"
+      className="py-12 bg-gradient-to-r from-blue-500 to-blue-700 text-white"
+      data-aos="fade-up" // AOS animation
+    >
       <div className="container mx-auto px-6 md:px-12">
         <h2 className="text-4xl font-bold text-center mb-6">Contact Me</h2>
         <div className="flex flex-col md:flex-row justify-center gap-12">
           {/* Contact Form */}
-          <div className="md:w-1/2 bg-white text-gray-900 p-8 rounded-lg shadow-lg">
+          <div
+            className="md:w-1/2 bg-white text-gray-900 p-8 rounded-lg shadow-lg"
+            data-aos="fade-right" // AOS animation
+          >
             <h3 className="text-3xl font-semibold mb-4">Get in Touch</h3>
-            {formStatus === 'success' && (
-              <p className="text-green-600 mb-4">Your message has been sent successfully!</p>
+            {formStatus === "success" && (
+              <p className="text-green-600 mb-4">
+                Your message has been sent successfully!
+              </p>
             )}
-            {formStatus === 'error' && (
-              <p className="text-red-600 mb-4">There was an error sending your message. Please try again.</p>
+            {formStatus === "error" && (
+              <p className="text-red-600 mb-4">
+                There was an error sending your message. Please try again.
+              </p>
             )}
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Name
+                </label>
                 <input
                   type="text"
                   id="name"
@@ -50,7 +90,29 @@ const ContactSection = () => {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                <label
+                  htmlFor="number"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Phone Number
+                </label>
+                <input
+                  type="number"
+                  id="number"
+                  name="number"
+                  value={formData.number}
+                  onChange={handleChange}
+                  required
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 py-2 px-3"
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Email
+                </label>
                 <input
                   type="email"
                   id="email"
@@ -62,7 +124,12 @@ const ContactSection = () => {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Message
+                </label>
                 <textarea
                   id="message"
                   name="message"
@@ -82,47 +149,45 @@ const ContactSection = () => {
             </form>
           </div>
           {/* Contact Details */}
-          <div className="md:w-1/2">
+          <div
+            className="md:w-1/2"
+            data-aos="fade-left" // AOS animation
+          >
             <h3 className="text-3xl font-semibold mb-4">Contact Details</h3>
-            <p className="text-gray-200 mb-6">Feel free to reach out through the following channels:</p>
+            <p className="text-gray-200 mb-6">
+              Feel free to reach out through the following channels:
+            </p>
             <ul className="space-y-4">
               <li className="flex items-center">
-                <svg
-                  className="w-6 h-6 text-gray-300 mr-4"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                <FaEnvelope className="w-6 h-6 text-gray-300 mr-4" />
+                <a
+                  href="mailto:9hrushikesh@gmail.com"
+                  className="text-blue-200 hover:text-white"
                 >
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm1-6H11v-6h2v6z"/>
-                </svg>
-                <a href="mailto:hrushikesh.jena@example.com" className="text-blue-200 hover:text-white">
-                  hrushikesh.jena@example.com
+                  9hrushikesh@gmail.com
                 </a>
               </li>
               <li className="flex items-center">
-                <svg
-                  className="w-6 h-6 text-gray-300 mr-4"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                <FaLinkedin className="w-6 h-6 text-gray-300 mr-4" />
+                <a
+                  href="https://linkedin.com/in/hrushikeshjena"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-200 hover:text-white"
                 >
-                  <path d="M21 11V5a2 2 0 00-2-2H5a2 2 0 00-2 2v6M21 13V7m0 0v6a2 2 0 01-2 2H5a2 2 0 01-2-2V7M21 11H3"/>
-                </svg>
-                <a href="https://linkedin.com/in/hrushikeshjena" target="_blank" rel="noopener noreferrer" className="text-blue-200 hover:text-white">
                   LinkedIn
                 </a>
               </li>
+
               <li className="flex items-center">
-                <svg
-                  className="w-6 h-6 text-gray-300 mr-4"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                <FaWhatsapp className="w-6 h-6 text-gray-300 mr-4" />
+                <a
+                  href="https://wa.me/7789999500"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-200 hover:text-white"
                 >
-                  <path d="M23 3c-.8.4-1.7.7-2.6.8 1-.6 1.8-1.6 2.1-2.8-.9.5-1.8.9-2.7 1.1-.8-.8-1.9-1.3-3.1-1.3-2.4 0-4.3 1.9-4.3 4.3 0 .3.1.6.1.9-3.6-.2-6.8-1.9-8.8-4.5-.4.6-.7 1.4-.7 2.3 0 1.6.8 3.1 2 4-1-.1-2-.3-2.8-.7v.1c0 2.2 1.6 4 3.7 4.4-.4.1-.8.2-1.2.2-.3 0-.6 0-.9-.1.6 2 2.5 3.4 4.7 3.4-1.7 1.3-3.8 2-6.1 2-.4 0-.8 0-1.2-.1 2.2 1.4 4.7 2.2 7.4 2.2 8.9 0 13.8-7.4 13.8-13.8 0-.2 0-.4-.1-.6.9-.7 1.6-1.6 2.2-2.6z"/>
-                </svg>
-                <a href="https://twitter.com/hrushikeshjena" target="_blank" rel="noopener noreferrer" className="text-blue-200 hover:text-white">
-                  Twitter
+                  WhatsApp
                 </a>
               </li>
             </ul>

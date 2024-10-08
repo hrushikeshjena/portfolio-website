@@ -36,9 +36,21 @@ const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative flex items-center justify-center h-screen bg-cover bg-center"
-      style={{ backgroundImage: "url('/path-to-your-background-image.jpg')" }}
+      className="relative flex items-center justify-center h-screen"
     >
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        className="absolute inset-0 object-cover w-full h-full"
+      >
+        <source
+          src="https://videos.pexels.com/video-files/3130182/3130182-uhd_2560_1440_30fps.mp4"
+          type="video/mp4"
+        />
+      </video>
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-black opacity-40"></div>
 
