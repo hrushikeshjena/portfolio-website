@@ -79,7 +79,7 @@
   justify-content: center;
   margin-top: 20px;
   position: absolute;
-  bottom: 100px; /* Position above the social media icons */
+  bottom: 100px; 
   left: 50%;
   color: white;
   transform: translateX(-50%);
@@ -107,8 +107,8 @@
 
 .hand-press-icon {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 60px;
+  right: 60px;
   cursor: pointer;
   width: 30px;
   height: 30px;

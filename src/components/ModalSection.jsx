@@ -73,7 +73,7 @@ function ModalSection({ closeModal }) {
               <FaTwitter className="social-icon" />
             </a>
             <a
-              href="https://www.linkedin.com"
+              href="https://www.linkedin.com/in/hrushikeshjena/"
               target="_blank"
               rel="noopener noreferrer"
             >
