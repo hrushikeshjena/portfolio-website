@@ -7,10 +7,12 @@ import ProjectsSection from "../sections/Project";
 import ResumeSection from "../sections/Resume";
 import SkillsSection from "../sections/Skills";
 import TestimonialsSection from "../sections/Testimonials";
+import Header from "./Header";
 
 const Home = () => {
   return (
     <>
+      <Header/>
       <HeroSection/>
       <AboutSection/>
       <SkillsSection/>
