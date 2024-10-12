@@ -1,15 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import emailjs from "emailjs-com"; // Import EmailJS
-import AOS from "aos"; // Import AOS
-import "aos/dist/aos.css"; // Import AOS CSS
-import {
-  FaEnvelope,
-  FaLinkedin,
-  FaTwitter,
-  FaInstagram,
-  FaFacebook,
-  FaWhatsapp,
-} from "react-icons/fa";
+import { FaEnvelope, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -19,10 +10,6 @@ const ContactSection = () => {
     number: "",
   });
   const [formStatus, setFormStatus] = useState(null); // For form submission status
-
-  useEffect(() => {
-    AOS.init(); // Initialize AOS
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,17 +37,13 @@ const ContactSection = () => {
     <section
       id="contact"
       className="py-12 bg-gradient-to-r from-blue-500 to-blue-700 text-white"
-      data-aos="fade-up" // AOS animation
     >
-      <div className="container mx-auto px-6 md:px-12">
-        <h2 className="text-4xl font-bold text-center mb-6">Contact Me</h2>
+      <div className="container mx-auto px-4 md:px-6 lg:px-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">Contact Me</h2>
         <div className="flex flex-col md:flex-row justify-center gap-12">
           {/* Contact Form */}
-          <div
-            className="md:w-1/2 bg-white text-gray-900 p-8 rounded-lg shadow-lg"
-            data-aos="fade-right" // AOS animation
-          >
-            <h3 className="text-3xl font-semibold mb-4">Get in Touch</h3>
+          <div className="w-full md:w-1/2 bg-white text-gray-900 p-6 md:p-8 rounded-lg shadow-lg">
+            <h3 className="text-2xl md:text-3xl font-semibold mb-4">Get in Touch</h3>
             {formStatus === "success" && (
               <p className="text-green-600 mb-4">
                 Your message has been sent successfully!
@@ -142,18 +125,15 @@ const ContactSection = () => {
               </div>
               <button
                 type="submit"
-                className="bg-blue-600 hover:bg-white hover:text-blue-600 text-white font-semibold py-2 px-4 rounded transition duration-300"
+                className="w-full bg-blue-600 hover:bg-white hover:text-blue-600 text-white font-semibold py-2 px-4 rounded transition duration-300"
               >
                 Send Message
               </button>
             </form>
           </div>
           {/* Contact Details */}
-          <div
-            className="md:w-1/2"
-            data-aos="fade-left" // AOS animation
-          >
-            <h3 className="text-3xl font-semibold mb-4">Contact Details</h3>
+          <div className="w-full md:w-1/2">
+            <h3 className="text-2xl md:text-3xl font-semibold mb-4">Contact Details</h3>
             <p className="text-gray-200 mb-6">
               Feel free to reach out through the following channels:
             </p>
@@ -178,7 +158,6 @@ const ContactSection = () => {
                   LinkedIn
                 </a>
               </li>
-
               <li className="flex items-center">
                 <FaWhatsapp className="w-6 h-6 text-gray-300 mr-4" />
                 <a

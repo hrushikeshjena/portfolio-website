@@ -12,19 +12,18 @@ import Header from "./Header";
 const Home = () => {
   return (
     <>
-      <Header/>
-      <HeroSection/>
-      <AboutSection/>
-      <SkillsSection/>
-      <ResumeSection/>
-      <ProjectsSection/>
-      <BlogSection/>
-      <TestimonialsSection/>
-      <ContactSection/>
-      <Footer/>
-      
+      <Header />
+      <HeroSection />
+     <AboutSection />
+       <SkillsSection />
+      <ResumeSection />
+      <ProjectsSection />
+      <BlogSection />
+      <TestimonialsSection />
+      <ContactSection />
+      <Footer />
     </>
   );
-}
+};
 
 export default Home;
