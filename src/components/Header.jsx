@@ -1,42 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-scroll';
-import anime from 'animejs';
-
+import React, { useEffect, useState } from "react";
+import anime from "animejs";
+import { Link } from "react-router-dom";
+import { BiSolidPhoneCall } from "react-icons/bi";
+import { GrProjects } from "react-icons/gr";
+import { FaPenFancy, FaDownLeftAndUpRightToCenter } from "react-icons/fa6";
+import { FaLaptopCode, FaSignInAlt } from "react-icons/fa";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     // Animation for the header title
     anime({
-      targets: '.header-title',
+      targets: ".header-title",
       opacity: [0, 1],
       translateY: [-30, 0],
-      easing: 'easeOutExpo',
+      easing: "easeOutExpo",
       duration: 1000,
     });
 
     // Animation for the navigation links
     anime({
-      targets: '.nav-link',
+      targets: ".nav-link",
       opacity: [0, 1],
       translateY: [20, 0],
-      easing: 'easeOutExpo',
-      delay: anime.stagger(100), // Staggered delay
+      easing: "easeOutExpo",
+      delay: anime.stagger(100),
       duration: 1000,
     });
   }, []);
 
   return (
-    <header className="bg-blue-600 text-white py-4 shadow-md fixed top-0 w-full z-50">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* Clickable link to Home section */}
-        <Link to="home" smooth={true} duration={500} className="cursor-pointer">
-          <h1 className="header-title text-2xl font-bold">Hrushikesh Jena</h1>
+    <header className="text-black  py-4 shadow-md fixed top-0 w-full z-50 bg-white">
+      <div className="container mx-auto px-4 flex justify-between items-center">
+        {/* Home Link */}
+        <Link to="/" className="header-title text-2xl font-bold">
+          Hrushikesh
         </Link>
 
-        {/* Toggle button for mobile view */}
+        {/* Mobile Menu Toggle */}
         <button
-          className="block lg:hidden text-white focus:outline-none"
+          className="lg:hidden text-black focus:outline-none"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <svg
@@ -56,45 +59,56 @@ const Header = () => {
         </button>
 
         {/* Navigation Menu */}
-        <nav className={`${isMenuOpen ? 'block' : 'hidden'} lg:flex lg:items-center w-full lg:w-auto`}>
+        <nav
+          className={`${
+            isMenuOpen ? "block" : "hidden"
+          } lg:flex lg:items-center w-full lg:w-auto`}
+        >
           <ul className="flex flex-col lg:flex-row gap-4 lg:gap-8">
             <li>
-              <Link to="about" smooth={true} duration={500} className="nav-link hover:underline cursor-pointer block py-2 lg:py-0">
-                About
+              <Link
+                to="/#"
+                className="nav-link hover:underline flex justify-between align-middle gap-3 cursor-pointer block py-2 lg:py-0"
+              >
+                What I Do <FaLaptopCode size={24} className="" />
               </Link>
             </li>
             <li>
-              <Link to="projects" smooth={true} duration={500} className="nav-link hover:underline cursor-pointer block py-2 lg:py-0">
-                Projects
+              <Link
+                to="/#"
+                className="nav-link hover:underline flex justify-between align-middle gap-3 cursor-pointer block py-2 lg:py-0"
+              >
+                Accomplishments <GrProjects size={18} className="mt-1" />
               </Link>
             </li>
             <li>
-              <Link to="skills" smooth={true} duration={500} className="nav-link hover:underline cursor-pointer block py-2 lg:py-0">
-                Skills
+              <Link
+                to="/#"
+                className="nav-link hover:underline flex justify-between align-middle gap-3 cursor-pointer block py-2 lg:py-0"
+              >
+                Insights <FaPenFancy size={18} className="mt-1" />
               </Link>
             </li>
             <li>
-              <Link to="blog" smooth={true} duration={500} className="nav-link hover:underline cursor-pointer block py-2 lg:py-0">
-                Blogs
-              </Link>
-            </li>
-            <li>
-              <Link to="services" smooth={true} duration={500} className="nav-link hover:underline cursor-pointer block py-2 lg:py-0">
-                Services
-              </Link>
-            </li>
-            <li>
-              <Link to="products" smooth={true} duration={500} className="nav-link hover:underline cursor-pointer block py-2 lg:py-0">
-                Products
-              </Link>
-            </li>
-            <li>
-              <Link to="contact" smooth={true} duration={500} className="bg-yellow-500 text-black px-4 py-2 rounded hover:bg-yellow-600 cursor-pointer block lg:inline-block">
-                Contact
+              <Link
+                to="/#"
+                className="nav-link hover:underline cursor-pointer flex gap-3 justify-between align-middle block py-2 lg:py-0"
+              >
+                Reach Out! <BiSolidPhoneCall size={22} />
               </Link>
             </li>
           </ul>
         </nav>
+
+        {/* Sign In/Sign Up Buttons */}
+        <div className="hidden lg:flex gap-4">
+          <Link
+            to="/signin"
+            className="px-4 py-2 border border-black rounded-md flex gap-3 justify-between align-middle hover:bg-black hover:text-white transition"
+          >
+            Start Exploring <FaSignInAlt size={18} className="mt-1" />
+          </Link>
+        </div>
       </div>
     </header>
   );

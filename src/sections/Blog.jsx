@@ -1,68 +1,94 @@
-import React, { useEffect } from 'react';
-import anime from 'animejs';
-
-const blogPosts = [
-  {
-    title: 'Understanding React Hooks',
-    summary: 'An in-depth look at React hooks, including useState and useEffect, and how they simplify state management in functional components.',
-    date: 'August 1, 2024',
-    link: 'https://example.com/understanding-react-hooks'
-  },
-  {
-    title: 'A Guide to Node.js Performance Optimization',
-    summary: 'Tips and techniques for improving the performance of Node.js applications, including efficient database queries and asynchronous operations.',
-    date: 'July 15, 2024',
-    link: 'https://example.com/nodejs-performance-optimization'
-  },
-  {
-    title: 'Top 5 CSS Frameworks for Modern Web Development',
-    summary: 'A comparison of popular CSS frameworks like Tailwind CSS, Bootstrap, and Bulma, and how they can enhance your web development workflow.',
-    date: 'June 25, 2024',
-    link: 'https://example.com/css-frameworks-comparison'
-  },
-  // Add more blog posts as needed
-];
+import React, { useState, useEffect } from "react";
+import anime from "animejs";
+import axios from "axios";
 
 const BlogSection = () => {
+  const [blogPosts, setBlogPosts] = useState([]);
+
   useEffect(() => {
-    // Animation for blog posts
-    anime({
-      targets: '.blog-post',
-      opacity: [0, 1],
-      translateY: [20, 0],
-      easing: 'easeOutExpo',
-      delay: anime.stagger(100), // Staggered delay for each blog post
-      duration: 800,
-    });
+    const fetchBlogPosts = async () => {
+      try {
+        const response = await axios.get("http://localhost:5050/blogs");
+        console.log("Fetched Data:", response.data);
+        setBlogPosts(response.data);
+      } catch (error) {
+        alert(`Error fetching data: ${error.message}`);
+      }
+    };
+
+    fetchBlogPosts();
   }, []);
 
+  useEffect(() => {
+    anime({
+      targets: ".blog-post",
+      opacity: [0, 1],
+      translateY: [20, 0],
+      easing: "easeOutExpo",
+      delay: anime.stagger(100),
+      duration: 800,
+    });
+  }, [blogPosts]);
+
   return (
-    <section id="blog" className="py-16 bg-white">
-      <div className="container mx-auto px-6 md:px-12">
-        <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
-          Blog / Articles
-        </h2>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {blogPosts.map((post, index) => (
-            <article
-              key={index}
-              className="blog-post bg-white border border-gray-200 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105"
-            >
-              <div className="p-6">
-                <h3 className="text-2xl font-semibold mb-3 text-blue-700">{post.title}</h3>
-                <p className="text-gray-700 mb-4">{post.summary}</p>
-                <p className="text-gray-500 text-sm mb-4">{post.date}</p>
+    <section id="blog" className="pb-28 ">
+      <div className="container mx-auto px-6 md:px-12 text-white">
+        <h2 className="text-4xl font-bold text-center mb-12">Insights</h2>
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 p-4">
+          {blogPosts.length === 0 ? (
+            <p className="text-center text-gray-400">
+              No blog posts available.
+            </p>
+          ) : (
+            blogPosts.map((post, index) => (
+              <article
+                key={index}
+                className="relative border border-gray-200 shadow-lg rounded-2xl overflow-hidden p-6 backdrop-blur-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:border-blue-500"
+              >
+                {/* Image Section with Hover Zoom */}
+                {post.imageUrl && (
+                  <div className="relative w-full h-48 overflow-hidden rounded-lg mb-4">
+                    <img
+                      src={`http://localhost:5050${post.imageUrl}`}
+                      alt={post.title}
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                    />
+                  </div>
+                )}
+
+                {/* Author & Date */}
+                <div className="flex justify-between items-center mb-4 text-xs text-gray-300">
+                  <p>
+                    By{" "}
+                    <span className="font-semibold text-white">
+                      {post.author || "Unknown"}
+                    </span>
+                  </p>
+                  <p>{new Date(post.createdAt).toLocaleDateString()}</p>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-xl font-semibold text-blue-600 hover:text-blue-400 transition-colors duration-300">
+                  {post.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-gray-200 text-sm mt-2">
+                  {post.description?.slice(0, 100) ||
+                    "No description available"}
+                  ...
+                </p>
+
+                {/* Read More Button */}
                 <a
-                  href={post.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:text-blue-700 font-semibold"
+                  href="#"
+                  className="inline-block mt-4 text-blue-400 hover:text-blue-600 font-semibold transition-colors duration-300"
                 >
-                  Read More
+                  Read More →
                 </a>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))
+          )}
         </div>
       </div>
     </section>

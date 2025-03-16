@@ -2,41 +2,141 @@
 @tailwind components;
 @tailwind utilities;
 
+.container-eg-btn-4 {
+  position: relative;
+  display: flex;
+  justify-content: left;
+  margin-top: 20px;
+}
+
+.button-8 {
+  position: relative;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+}
+
+.button-8:before {
+  content: "";
+  background: linear-gradient(
+    225deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #ffe600,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: 400%;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  z-index: -1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.button-8:hover {
+  color: #fff;
+}
+
+.button-8:hover:before {
+  animation: glowing 20s linear infinite;
+}
+
+.button-8:active:before {
+  background: #000137;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+/* Adding the gradient text effect */
+.text-gradient1 {
+  background: linear-gradient(
+    225deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff8000,
+    #ff0000
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400%;
+  transition: background-position 1s ease, color 0.3s ease;
+}
+
+.text-gradient1:hover {
+  background-position: 400% 0;
+  color: transparent; /* Keep the color transparent to reveal the gradient on hover */
+}
 
 /* styles.css or equivalent */
 .skill-card {
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  }
-  
-  .skill-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  -webkit-transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  -moz-transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  -ms-transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  -o-transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
 
+.skill-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
 
-  .modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Modal background */
-  }
-  
-  .modal-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  }
-  
-  .press-here {
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Modal background */
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.press-here {
   position: absolute; /* Position relative to the modal */
   top: 60px; /* Adjust this to align with the icons */
   right: 70px; /* Position next to the hand icon */
@@ -45,8 +145,6 @@
   animation: pulse 1.5s infinite; /* Infinite pulse animation */
   cursor: pointer; /* Change cursor to pointer on hover */
 }
-
-
 
 /* HeroSection.css */
 .modal {
@@ -79,7 +177,7 @@
   justify-content: center;
   margin-top: 20px;
   position: absolute;
-  bottom: 100px; 
+  bottom: 100px;
   left: 50%;
   color: white;
   transform: translateX(-50%);
@@ -142,7 +240,6 @@
   }
 }
 
-
 /* Keyframes for the pulsing effect */
 @keyframes pulse {
   0% {
@@ -158,7 +255,6 @@
     opacity: 1; /* Back to original state */
   }
 }
-
 
 @keyframes slideInLeft {
   0% {
@@ -193,4 +289,190 @@
 
 .text-h1.second {
   animation-name: slideInRight; /* Animation for the second name */
+}
+
+.blog-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.blog-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.blog-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-form label {
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #555;
+}
+
+.blog-form input,
+.blog-form textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.blog-form input:focus,
+.blog-form textarea:focus {
+  border-color: #4caf50;
+}
+
+.blog-form textarea {
+  height: 150px;
+  resize: none;
+}
+
+.blog-form button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.blog-form button:hover {
+  background-color: #45a049;
+}
+
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f9f9f9;
+  height: 100vh;
+}
+
+.hero-content {
+  max-width: 50%;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  color: #333;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: #666;
+  margin: 20px 0;
+}
+
+.cta-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}
+
+.hero-image {
+  max-width: 45%;
+}
+
+.hero-image .image {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  position: relative;
+  width: 204px;
+  height: 204px;
+  color: #fff;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-20px);
+}
+
+.card::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(45deg, #ffbc00, #ff0058);
+  border-radius: 1.2em;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #ffbc00, #ff0058);
+  filter: blur(30px);
+}
+
+.card span {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+  border-radius: 1em;
+}
+
+.card span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.card .content {
+  position: relative;
+  padding: 10px;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.5em;
+}
+
+.bsZLOW {
+  padding-bottom: 0 !important;
 }

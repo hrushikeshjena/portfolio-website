@@ -4,14 +4,15 @@ import {
   FaTwitter,
   FaLinkedinIn,
   FaHandPointer,
+  FaInstagram,
 } from "react-icons/fa";
 import loadingImage from "../assets/Bg.png";
 
 function ModalSection({ closeModal }) {
   const [displayedText, setDisplayedText] = useState("");
-  const fullText = `I'm a Full Stack Mobile and Web Applications Developer with 2 years of experience. Alongside development, I specialize in UI/UX design, WordPress, and digital marketing, helping businesses create seamless digital experiences. Beyond the tech field, I'm also a trader and investor in cryptocurrencies and stocks, using market insights to make strategic investment decisions. My diverse expertise allows me to thrive in both the tech and financial sectors.`;
+  const fullText = `I am a Full Stack Mobile and Web Applications Developer and entrepreneur with 2 years of experience, specializing in MERN stack, React Native, UI/UX design, WordPress development, and digital marketing. I am dedicated to delivering seamless and impactful digital solutions that drive business growth. As an active cryptocurrency and stock trader, I combine technical expertise with market insights to excel at the intersection of technology and finance, fostering innovation and success.`;
 
-  const typingSpeed = 50; // typing speed in milliseconds
+  const typingSpeed = 30; // typing speed in milliseconds
 
   useEffect(() => {
     let index = 0;
@@ -37,6 +38,7 @@ function ModalSection({ closeModal }) {
           <div className="text-container">
             <h1 className="text-h1 first">HRUSHIKESH</h1>
             <h1 className="text-h1 second">JENA</h1>
+
             <p className="text-p">{displayedText}</p>
           </div>
           <svg
@@ -71,6 +73,13 @@ function ModalSection({ closeModal }) {
               rel="noopener noreferrer"
             >
               <FaTwitter className="social-icon" />
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram className="social-icon" />
             </a>
             <a
               href="https://www.linkedin.com/in/hrushikeshjena/"
