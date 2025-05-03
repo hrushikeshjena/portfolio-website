@@ -237,9 +237,9 @@ const Hero = () => {
           <HeroBgAnimation />
         </HeroBg>
 
-        <section className="container mx-auto px-2 text-white">
-          <div className="flex flex-col md:flex-row items-center md:items-start justify-between space-y-12 md:space-y-0">
-            <div className="mx-w-lg py-6">
+        <section className="container mx-auto px-2 py-6 text-white">
+          <div className="flex flex-col-reverse md:flex-row items-center md:items-start justify-between space-y-12 md:space-y-0">
+            <div className="mx-w-lg py-6 hidden lg:display-block">
               <img
                 src={HrushikeshJenaInstagram}
                 alt="HrushikeshJenaInstagram"
@@ -337,7 +337,7 @@ const Hero = () => {
                   <img
                     src={HrushikeshJenaEmoji}
                     alt="HrushikeshJenaTelegram"
-                    className="w-8 absolute mx-36 top-24"
+                    className="w-8 absolute mx-36 hidden lg:display-block top-24"
                   />
                   <div className="w-14 h-14  rounded-lg shadow-lg bg-white shadow-[#EA5181]">
                     <img
@@ -358,7 +358,7 @@ const Hero = () => {
                 <img
                   src={HrushikeshJenaEmoji}
                   alt="HrushikeshJenaEmoji"
-                  className="w-8 top-1/2 mx-[-6rem] absolute"
+                  className="w-8 top-1/2 mx-[-6rem] hidden lg:display-block absolute"
                 />
 
                 <div className="w-72 mx-8 h-72 border-4 shadow-2xl shadow-[#51C6EA] my-10 bg-white rounded-full">
@@ -389,7 +389,7 @@ const Hero = () => {
                 <img
                   src={HrushikeshJenaEmoji1}
                   alt="HrushikeshJenaTelegram"
-                  className="w-8 absolute mx-[26rem] top-1/2 "
+                  className="w-8 absolute mx-[26rem] hidden lg:display-block top-1/2 "
                 />
               </div>
             </div>

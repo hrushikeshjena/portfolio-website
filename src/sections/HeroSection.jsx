@@ -21,7 +21,7 @@ function HeroSection() {
     <section className="bg-black text-white">
       <div className="container mx-auto   px-4 py-32">
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between space-y-12 md:space-y-0">
-          <div className="mx-w-lg py-6">
+          <div className="mx-w-lg py-6 ">
             <img
               src={HrushikeshJenaInstagram}
               alt="HrushikeshJenaInstagram"
@@ -114,7 +114,7 @@ function HeroSection() {
           {/* Right Section */}
           <div className="md:w-2/5 flex justify-center">
             <div>
-              <div className="flex justify-between mt-6 gap-x-6">
+              <div className="flex justify-between  mt-6 gap-x-6">
                 <img
                   src={HrushikeshJenaEmoji}
                   alt="HrushikeshJenaTelegram"
