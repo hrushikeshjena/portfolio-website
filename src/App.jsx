@@ -9,12 +9,14 @@ import Blog from "./pages/Blog";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
 import ForgetPassword from "./pages/auth/ForgetPassword";
+import CustomCursor from "./data/CustomCursor";
 
 const App = () => {
   
 
   return (
     <Router>
+   <CustomCursor />
        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/blog" element={<Blog />} />
