@@ -8,10 +8,10 @@ function Blog() {
 
   const getData = async () => {
     try {
-      const response = await axios.get("http://localhost:5050/blogs");
-
+      const response = await axios.get("https://master-admin-backend.onrender.com/api/byadmin/getblog");
       if (response.data && response.data.length > 0) {
         setFetchedBlogs(response.data);
+        console.log(fetchedBlogs)
       }
     } catch (error) {
       console.error("Error fetching data:", error);

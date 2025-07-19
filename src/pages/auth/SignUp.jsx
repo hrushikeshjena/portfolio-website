@@ -27,23 +27,17 @@ function SignUp() {
     }
 
     try {
-      // Create user using Firebase Authentication
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
-      // Get the user ID from Firebase Authentication
       const user = userCredential.user;
 
-      // Store user details in Firestore (Name, Phone Number)
       await setDoc(doc(db, "users", user.uid), {
         name: name,
         phone: phone,
-        email: user.email, // Firebase stores email automatically
+        email: user.email, 
       });
 
-      // Optionally, save other user data or perform further logic here
-      console.log("User registered:", user);
 
-      // Navigate to the success page or dashboard after successful sign-up
       history.push("/services");
     } catch (error) {
       console.error("Error signing up:", error.message);

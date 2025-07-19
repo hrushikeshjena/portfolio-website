@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import {  useNavigate } from "react-router-dom"; // For navigation after successful sign-in
+import {  useNavigate } from "react-router-dom"; 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { auth} from "../../firebase/FirebaseConfig.js"; // Adjust the path as needed
+import { auth} from "../../firebase/FirebaseConfig.js";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -12,7 +12,6 @@ function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation for empty fields
     if (!email || !password) {
       alert("Please fill in both email and password");
       return;
@@ -21,13 +20,13 @@ function SignIn() {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       if (rememberMe) {
-        localStorage.setItem("user", JSON.stringify(userCredential.user)); // Optionally store user info
+        localStorage.setItem("user", JSON.stringify(userCredential.user)); 
       }
 
       navigate("/");
     } catch (error) {
       console.error("Error signing in:", error.message);
-      alert(error.message); // Display error message if sign-in fails
+      alert(error.message);
     }
   };
 
@@ -36,7 +35,6 @@ function SignIn() {
       <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">Sign In</h2>
         <form onSubmit={handleSubmit}>
-          {/* Email Field */}
           <div className="mb-4">
             <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email Address</label>
             <input
@@ -50,7 +48,6 @@ function SignIn() {
             />
           </div>
 
-          {/* Password Field */}
           <div className="mb-4">
             <label htmlFor="password" className="block text-gray-700 font-medium mb-2">Password</label>
             <input

@@ -4,19 +4,13 @@ import { darkTheme } from "../utils/Themes";
 
 import AboutSection from "../sections/About";
 import BlogSection from "../sections/Blog";
-import ContactSection from "../sections/Contact";
-import HeroSection from "../sections/HeroSection";
-import ProjectsSection from "../sections/Project";
-import ResumeSection from "../sections/Resume";
-import SkillsSection from "../sections/Skills";
-import TestimonialsSection from "../sections/Testimonials";
+
 import Header from "./Header";
 import Skills from "../components/sections/Skills";
 import Hero from "../components/sections/Hero";
 import StartCanvas from "../components/canvas/Stars";
 import Services from "../sections/WhatIDo";
 import Testimonials from "../sections/Testimonials";
-import Projects from "../sections/Project";
 
 const Body = styled.div`
   background-color: ${({ theme }) => theme.bg};
@@ -46,22 +40,19 @@ const Home = () => {
     <>
       <ThemeProvider theme={darkTheme}>
         <Body>
-        <Header/>
+          <Header />
           <StartCanvas />
           <div>
             <Hero />
-            {/* <HeroSection /> */}
             <AboutSection />
-            {/* <SkillsSection /> */}
             <Wrapper>
               <Skills />
-            <Services />
-            {/* <Projects/> */}
-            <Testimonials/>
-{/* <BlogSection /> */}
+              <Services />
+              <Testimonials />
+              <BlogSection />
             </Wrapper>
             <Wrapper>
-<Footer />
+              <Footer />
             </Wrapper>
           </div>
         </Body>

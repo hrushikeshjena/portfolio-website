@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import anime from "animejs";
 import { Link } from "react-router-dom";
+import anime from "animejs";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { GrProjects } from "react-icons/gr";
-import { FaPenFancy, FaDownLeftAndUpRightToCenter } from "react-icons/fa6";
-import { FaLaptopCode, FaSignInAlt } from "react-icons/fa";
+import { FaPenFancy, FaLaptopCode, FaSignInAlt } from "react-icons/fa";
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Animation for the header title
     anime({
       targets: ".header-title",
       opacity: [0, 1],
@@ -18,7 +17,6 @@ const Header = () => {
       duration: 1000,
     });
 
-    // Animation for the navigation links
     anime({
       targets: ".nav-link",
       opacity: [0, 1],
@@ -30,17 +28,20 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="text-black  py-4 shadow-md fixed top-0 w-full z-50 bg-white">
+    <header className="text-black py-4 shadow-md fixed top-0 w-full z-50 bg-white" role="banner">
       <div className="container mx-auto px-4 flex justify-between items-center">
-        {/* Home Link */}
-        <Link to="/" className="header-title text-2xl font-bold">
+        {/* Logo / Home Link */}
+        <Link to="/" className="header-title text-2xl font-bold" aria-label="Homepage">
           Hrushikesh
         </Link>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile Menu Toggle Button */}
         <button
           className="lg:hidden text-black focus:outline-none"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={isMenuOpen}
+          aria-controls="primary-navigation"
         >
           <svg
             className="w-6 h-6"
@@ -48,18 +49,15 @@ const Header = () => {
             stroke="currentColor"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16m-7 6h7"
-            ></path> 
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
           </svg>
         </button>
 
-        {/* Navigation Menu */}
+        {/* Navigation Links */}
         <nav
+          id="primary-navigation"
           className={`${
             isMenuOpen ? "block" : "hidden"
           } lg:flex lg:items-center w-full lg:w-auto`}
@@ -67,46 +65,47 @@ const Header = () => {
           <ul className="flex flex-col lg:flex-row gap-4 lg:gap-8">
             <li>
               <Link
-                to="/#"
-                className="nav-link hover:underline flex justify-between align-middle gap-3 cursor-pointer block py-2 lg:py-0"
+                to="/#what-i-do"
+                className="nav-link hover:underline flex items-center gap-2 py-2 lg:py-0"
               >
-                What I Do <FaLaptopCode size={24} className="" />
+                What I Do <FaLaptopCode size={20} aria-hidden="true" />
               </Link>
             </li>
             <li>
               <Link
-                to="/#"
-                className="nav-link hover:underline flex justify-between align-middle gap-3 cursor-pointer block py-2 lg:py-0"
+                to="/#accomplishments"
+                className="nav-link hover:underline flex items-center gap-2 py-2 lg:py-0"
               >
-                Accomplishments <GrProjects size={18} className="mt-1" />
+                Accomplishments <GrProjects size={18} className="mt-1" aria-hidden="true" />
               </Link>
             </li>
             <li>
               <Link
-                to="/#"
-                className="nav-link hover:underline flex justify-between align-middle gap-3 cursor-pointer block py-2 lg:py-0"
+                to="/blog"
+                className="nav-link hover:underline flex items-center gap-2 py-2 lg:py-0"
               >
-                Insights <FaPenFancy size={18} className="mt-1" />
+                Insights <FaPenFancy size={18} className="mt-1" aria-hidden="true" />
               </Link>
             </li>
             <li>
               <Link
-                to="/#"
-                className="nav-link hover:underline cursor-pointer flex gap-3 justify-between align-middle block py-2 lg:py-0"
+                to="/#contact"
+                className="nav-link hover:underline flex items-center gap-2 py-2 lg:py-0"
               >
-                Reach Out! <BiSolidPhoneCall size={22} />
+                Reach Out! <BiSolidPhoneCall size={22} aria-hidden="true" />
               </Link>
             </li>
           </ul>
         </nav>
 
-        {/* Sign In/Sign Up Buttons */}
+        {/* Sign In / Start Button */}
         <div className="hidden lg:flex gap-4">
           <Link
             to="/signin"
-            className="px-4 py-2 border border-black rounded-md flex gap-3 justify-between align-middle hover:bg-black hover:text-white transition"
+            className="px-4 py-2 border border-black rounded-md flex items-center gap-2 hover:bg-black hover:text-white transition"
+            aria-label="Sign In"
           >
-            Start Exploring <FaSignInAlt size={18} className="mt-1" />
+            Start Exploring <FaSignInAlt size={18} aria-hidden="true" />
           </Link>
         </div>
       </div>
@@ -114,4 +113,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
