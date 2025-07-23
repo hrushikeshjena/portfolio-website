@@ -11,7 +11,7 @@ import Hero from "../components/sections/Hero";
 import StartCanvas from "../components/canvas/Stars";
 import Services from "../sections/WhatIDo";
 import Testimonials from "../sections/Testimonials";
-
+import CTASection from "../sections/CTASection";
 const Body = styled.div`
   background-color: ${({ theme }) => theme.bg};
   width: 100%;
@@ -48,6 +48,7 @@ const Home = () => {
             <Wrapper>
               <Skills />
               <Services />
+              <CTASection />
               <Testimonials />
               <BlogSection />
             </Wrapper>
