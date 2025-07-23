@@ -62,7 +62,7 @@ export default function Testimonials() {
               <img
                 src={testimonials[current].image}
                 alt={`Picture of ${testimonials[current].name}`}
-                className="w-16 h-16 mx-auto rounded-full border-2 border-blue-400"
+                className="w-24 h-24 mx-auto rounded-full border-2 border-blue-400"
                 loading="lazy"
               />
               <p className="text-gray-300 mt-4 text-lg font-light">
