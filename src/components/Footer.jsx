@@ -1,15 +1,22 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { FaLinkedin, FaTwitter, FaGithub, FaEnvelope } from "react-icons/fa";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { useState } from "react";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!email) return alert("Please enter a valid email.");
+    console.log("Subscribed email:", email);
+    alert("Subscribed successfully!");
+    setEmail("");
+  };
   return (
     <footer className=" text-white py-12">
       <div className="container mx-auto px-6 md:px-12">
-        {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
-          {/* Branding Section */}
           <motion.div
             className="space-y-4"
             initial={{ opacity: 0, y: 30 }}
@@ -42,7 +49,7 @@ const Footer = () => {
                     icon: <FaGithub />,
                   },
                   {
-                    href: "mailto:hrushikeshjena@gmail.com",
+                    href: "mailto:contact@hrushikeshjena.info",
                     icon: <FaEnvelope />,
                   },
                 ].map((item, index) => (
@@ -62,7 +69,6 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Quick Links */}
           <motion.div
             className="space-y-4"
             initial={{ opacity: 0, y: 30 }}
@@ -86,7 +92,6 @@ const Footer = () => {
             </ul>
           </motion.div>
 
-          {/* Services Section */}
           <div className="text-center md:text-left">
             <h3 className="text-xl font-semibold mb-4">Services</h3>
             <ul className="space-y-2">
@@ -103,7 +108,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Newsletter & Contact */}
           <motion.div
             className="space-y-4"
             initial={{ opacity: 0, y: 30 }}
@@ -115,26 +119,32 @@ const Footer = () => {
               Available for freelance & remote projects.
             </p>
             <a
-  href="mailto:hrushikeshjena@gmail.com"
-  className="text-blue-400 hover:text-white font-semibold transition flex items-center space-x-2"
->
-  <span>Contact Me</span>
-  <AiOutlineArrowRight className="text-lg transition-transform duration-300 group-hover:translate-x-1" />
-</a>
+              href="mailto:hrushikeshjena@gmail.com"
+              className="text-blue-400 hover:text-white font-semibold transition flex items-center space-x-2"
+            >
+              <span>Contact Me</span>
+              <AiOutlineArrowRight className="text-lg transition-transform duration-300 group-hover:translate-x-1" />
+            </a>
 
             <h3 className="text-lg font-semibold mt-6">Subscribe</h3>
             <p className="text-blue-300">
               Get updates, articles, and insights in your inbox.
             </p>
-            <form className="flex items-center space-x-2 mt-2">
+            <form
+              onSubmit={handleSubmit}
+              className="flex items-center space-x-2 mt-2 max-w-md mx-auto"
+            >
               <input
                 type="email"
                 placeholder="Your Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white outline-none focus:ring-2 focus:ring-blue-400"
+                required
               />
               <button
                 type="submit"
-                className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-semibold hover:scale-105 transition duration-300"
+                className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-semibold hover:scale-105 transition duration-300 text-white"
               >
                 Subscribe
               </button>
@@ -142,7 +152,6 @@ const Footer = () => {
           </motion.div>
         </div>
 
-        {/* Bottom Section */}
         <div className="text-center mt-10 border-t border-gray-700 pt-4">
           <p className="text-blue-300">
             © {new Date().getFullYear()} Hrushikesh Jena. All rights reserved.
