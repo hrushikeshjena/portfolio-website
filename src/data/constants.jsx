@@ -26,9 +26,9 @@ import {
 } from "react-icons/si";
 
 // Importing images
-import img1 from "../assets/hrushikeshjena-clients1.png";
-import img2 from "../assets/hrushikeshjena-clients2.png";
-import img3 from "../assets/hrushikeshjena-clients3.png";
+import img1 from "../assets/hrushikeshjena-clients1.webp";
+import img2 from "../assets/hrushikeshjena-clients2.webp";
+import img3 from "../assets/hrushikeshjena-clients3.webp";
 
 // Developer Skills Data
 export const skills = [

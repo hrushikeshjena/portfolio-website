@@ -6,7 +6,7 @@ import { FiStar } from "react-icons/fi";
 import { FaRegStar, FaLightbulb } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-import profileImage from "../assets/hrushikeshjena-developer-cartoon-ai.png";
+import profileImage from "../assets/hrushikeshjena-developer-cartoon-ai.webp";
 import { cards } from "../data/constants";
 
 const AboutSection = () => {

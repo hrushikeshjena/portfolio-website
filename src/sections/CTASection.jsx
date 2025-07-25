@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { sendEmail } from "../utils/email";
-import TeamCollab from "../assets/team-collaborate-with-hrushikeshjena.jpg";
+import TeamCollab from "../assets/team-collaborate-with-hrushikeshjena.webp";
 
 const CTASection = () => {
   const formRef = useRef();
