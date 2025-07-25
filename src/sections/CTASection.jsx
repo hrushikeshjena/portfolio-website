@@ -8,26 +8,23 @@ const CTASection = () => {
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = useCallback(
-    async (e) => {
-      e.preventDefault();
-      setStatus("");
-      setError("");
-      setIsSubmitting(true);
+  const handleSubmit = useCallback(async (e) => {
+    e.preventDefault();
+    setStatus("");
+    setError("");
+    setIsSubmitting(true);
 
-      try {
-        await sendEmail(formRef);
-        setStatus("✅ Message sent successfully!");
-        formRef.current.reset();
-      } catch (err) {
-        console.error("Email send error:", err);
-        setError("❌ Failed to send message. Please try again.");
-      } finally {
-        setIsSubmitting(false);
-      }
-    },
-    []
-  );
+    try {
+      await sendEmail(formRef);
+      setStatus("✅ Message sent successfully!");
+      formRef.current.reset();
+    } catch (err) {
+      console.error("Email send error:", err);
+      setError("❌ Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }, []);
 
   return (
     <section
@@ -35,7 +32,6 @@ const CTASection = () => {
       aria-label="Work together contact section"
     >
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10 rounded-3xl shadow-2xl text-white">
-        {/* Image Section */}
         <div className="w-full md:w-1/2">
           <img
             src={TeamCollab}
@@ -47,11 +43,12 @@ const CTASection = () => {
 
         {/* Form Section */}
         <div className="w-full md:w-1/2">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Let’s Work Together</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Let’s Work Together
+          </h2>
           <p className="text-gray-300 mb-8 text-base md:text-lg">
             Fill out the form and I’ll get back to you within 24 hours.
           </p>
-
           <form
             ref={formRef}
             onSubmit={handleSubmit}
@@ -75,6 +72,17 @@ const CTASection = () => {
               required
               className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white outline-none focus:ring-2 focus:ring-blue-400"
               aria-label="Your Email"
+            />
+
+            {/* 📱 Mobile Number Field */}
+            <input
+              type="tel"
+              name="from_phone"
+              placeholder="Your Mobile Number"
+              pattern="[0-9]{10}"
+              required
+              className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white outline-none focus:ring-2 focus:ring-blue-400"
+              aria-label="Your Mobile Number"
             />
 
             <textarea
