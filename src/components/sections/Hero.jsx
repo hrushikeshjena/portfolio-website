@@ -18,7 +18,9 @@ import HrushikeshJena from "../../assets/hrushikeshjena.webp";
 import HrushikeshJenaEmoji from "../../assets/Hrushikesh-Smiling-Face-With-Halo.webp";
 import HrushikeshJenaEmoji1 from "../../assets/Hrushikesh-Smiling-Face-With-Sunglasses.webp";
 
-const HeroBgAnimation = React.lazy(() => import("../HeroBgAnimation/HeroBgAnimation"));
+const HeroBgAnimation = React.lazy(() =>
+  import("../HeroBgAnimation/HeroBgAnimation")
+);
 const StarCanvas = React.lazy(() => import("../canvas/Stars"));
 
 const HeroContainer = styled.div`
@@ -70,9 +72,18 @@ const Hero = () => {
           name="keywords"
           content="Hrushikesh Jena, Full Stack Developer, Software Engineer, MERN Developer, UX/UI Designer, Portfolio"
         />
-        <meta property="og:title" content="Hrushikesh Jena | Full Stack Developer" />
-        <meta property="og:image" content="https://yourdomain.com/assets/hrushikeshjena.png" />
-        <meta property="og:description" content="Experienced Full Stack Developer creating user-centric web and mobile apps." />
+        <meta
+          property="og:title"
+          content="Hrushikesh Jena | Full Stack Developer"
+        />
+        <meta
+          property="og:image"
+          content="https://yourdomain.com/assets/hrushikeshjena.png"
+        />
+        <meta
+          property="og:description"
+          content="Experienced Full Stack Developer creating user-centric web and mobile apps."
+        />
         <meta property="og:type" content="website" />
         <meta name="robots" content="index, follow" />
       </Helmet>
@@ -89,22 +100,11 @@ const Hero = () => {
 
           <section className="container mx-auto px-2 py-6 text-white">
             <div className="flex flex-col-reverse md:flex-row items-center md:items-start justify-between space-y-12 md:space-y-0">
-
-              {/* <div className="mx-w-lg py-6 hidden lg:block">
-                {[HrushikeshJenaInstagram, HrushikeshJenaLinkedin, HrushikeshJenaTwitter, HrushikeshJenaGithub, HrushikeshJenaTelegram, HrushikeshJenaFacebook].map((icon, idx) => (
-                  <img
-                    key={idx}
-                    src={icon}
-                    alt={`Social icon ${idx}`}
-                    className="w-20 mb-2 cursor-pointer"
-                    loading="lazy"
-                  />
-                ))}
-              </div> */}
-
               {/* Text Content */}
               <div className="md:w-1/2 text-left">
-                <h1 className="text-4xl font-extrabold leading-tight">Hello, I'm</h1>
+                <h1 className="text-4xl font-extrabold leading-tight">
+                  Hello, I'm
+                </h1>
                 <span className="text-gradient1 font-extrabold text-5xl md:text-6xl mt-2 block">
                   Hrushikesh
                 </span>
@@ -131,19 +131,29 @@ const Hero = () => {
                 </h2>
 
                 <p className="mt-6 text-lg leading-relaxed max-w-xl">
-                  I bring over 2 years of experience in designing and developing cutting-edge mobile
-                  and web applications. My focus is on delivering responsive, user-centric, and highly
-                  scalable solutions that seamlessly bridge innovation and functionality.
+                  I bring over 2 years of experience in designing and developing
+                  cutting-edge mobile and web applications. My focus is on
+                  delivering responsive, user-centric, and highly scalable
+                  solutions that seamlessly bridge innovation and functionality.
                 </p>
 
                 <ul className="mt-6 space-y-2 text-lg list-inside">
-                  <li>🚀 Committed to delivering scalable and user-focused solutions.</li>
-                  <li>🌟 Focused on crafting engaging and intuitive user experiences.</li>
+                  <li>
+                    🚀 Committed to delivering scalable and user-focused
+                    solutions.
+                  </li>
+                  <li>
+                    🌟 Focused on crafting engaging and intuitive user
+                    experiences.
+                  </li>
                   <li>📚 Committed to continuous learning and development.</li>
                 </ul>
 
                 <div className="container-eg-btn-4 mt-10 uf-border">
-                  <a className="button button-8 flex items-center justify-center gap-2" role="button">
+                  <a
+                    className="button button-8 flex items-center justify-center gap-2"
+                    role="button"
+                  >
                     <FaConnectdevelop className="text-2xl font-bold" />
                     Connect With Me!
                   </a>
@@ -155,12 +165,29 @@ const Hero = () => {
                 <div>
                   {/* Top Emojis */}
                   <div className="flex justify-between mt-6 gap-x-6">
-                    <img src={HrushikeshJenaEmoji} alt="Emoji Halo" className="w-8 absolute mx-36 hidden lg:block top-24" loading="lazy" />
-                    {[HrushikeshJenaResearch, HrushikeshJenaDesign].map((img, i) => (
-                      <div key={i} className={`w-14 h-14 rounded-lg shadow-lg bg-white shadow-${i === 0 ? '[#EA5181]' : '[#51EA9D]'}`}>
-                        <img src={img} alt={`Icon ${i}`} className="w-full px-2 py-2" loading="lazy" />
-                      </div>
-                    ))}
+                    <img
+                      src={HrushikeshJenaEmoji}
+                      alt="Emoji Halo"
+                      className="w-8 absolute mx-36 hidden lg:block top-24"
+                      loading="lazy"
+                    />
+                    {[HrushikeshJenaResearch, HrushikeshJenaDesign].map(
+                      (img, i) => (
+                        <div
+                          key={i}
+                          className={`w-14 h-14 rounded-lg shadow-lg bg-white shadow-${
+                            i === 0 ? "[#EA5181]" : "[#51EA9D]"
+                          }`}
+                        >
+                          <img
+                            src={img}
+                            alt={`Icon ${i}`}
+                            className="w-full px-2 py-2"
+                            loading="lazy"
+                          />
+                        </div>
+                      )
+                    )}
                   </div>
 
                   {/* Main Avatar */}
@@ -172,16 +199,33 @@ const Hero = () => {
                   />
 
                   <div className="w-72 mx-8 h-72 border-4 shadow-2xl shadow-[#51C6EA] my-10 bg-white rounded-full">
-                    <img src={HrushikeshJena} alt="Hrushikesh Jena" className="w-full" loading="lazy" />
+                    <img
+                      src={HrushikeshJena}
+                      alt="Hrushikesh Jena"
+                      className="w-full"
+                      loading="lazy"
+                    />
                   </div>
 
                   {/* Bottom Skills */}
                   <div className="flex justify-between gap-x-6">
-                    {[HrushikeshJenaDevelop, HrushikeshJenaDeploy].map((img, i) => (
-                      <div key={i} className={`w-14 h-14 rounded-lg shadow-lg bg-white shadow-${i === 0 ? '[#EA51EA]' : '[#DDEA51]'}`}>
-                        <img src={img} alt={`Skill ${i}`} className="w-full px-2 py-2" loading="lazy" />
-                      </div>
-                    ))}
+                    {[HrushikeshJenaDevelop, HrushikeshJenaDeploy].map(
+                      (img, i) => (
+                        <div
+                          key={i}
+                          className={`w-14 h-14 rounded-lg shadow-lg bg-white shadow-${
+                            i === 0 ? "[#EA51EA]" : "[#DDEA51]"
+                          }`}
+                        >
+                          <img
+                            src={img}
+                            alt={`Skill ${i}`}
+                            className="w-full px-2 py-2"
+                            loading="lazy"
+                          />
+                        </div>
+                      )
+                    )}
                   </div>
 
                   <img

@@ -9,12 +9,32 @@ import { motion } from "framer-motion";
 import profileImage from "../assets/hrushikeshjena-developer-cartoon-ai.webp";
 import { cards } from "../data/constants";
 
+// Feature card items (moved outside component for performance)
+const featureItems = [
+  {
+    title: "Pixel Perfect",
+    icon: <FiStar className="text-yellow-400 text-2xl" />,
+    description: "I focus on creating aesthetically pleasing and functional designs that align with your brand's identity.",
+  },
+  {
+    title: "High Quality",
+    icon: <FaRegStar className="text-yellow-400 text-2xl" />,
+    description: "I prioritize delivering top-notch, high-quality designs and solutions.",
+  },
+  {
+    title: "Awesome Idea",
+    icon: <FaLightbulb className="text-yellow-400 text-2xl" />,
+    description: "My work is centered on delivering innovative and impactful ideas that truly make a difference.",
+  },
+];
+
 const AboutSection = () => {
   const profileImageRef = useRef(null);
   const contentRef = useRef(null);
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
+    AOS.refresh();
 
     const adjustImageHeight = () => {
       if (profileImageRef.current && contentRef.current) {
@@ -22,9 +42,24 @@ const AboutSection = () => {
       }
     };
 
+    // Throttle function
+    const throttle = (callback, delay) => {
+      let timeout;
+      return () => {
+        if (!timeout) {
+          timeout = setTimeout(() => {
+            callback();
+            timeout = null;
+          }, delay);
+        }
+      };
+    };
+
+    const throttledAdjust = throttle(adjustImageHeight, 250);
+
     adjustImageHeight();
-    window.addEventListener("resize", adjustImageHeight);
-    return () => window.removeEventListener("resize", adjustImageHeight);
+    window.addEventListener("resize", throttledAdjust);
+    return () => window.removeEventListener("resize", throttledAdjust);
   }, []);
 
   return (
@@ -39,31 +74,21 @@ const AboutSection = () => {
           content="Hrushikesh Jena, software developer, full stack developer, React developer, Node.js developer, MERN stack"
         />
         <meta property="og:title" content="About Hrushikesh Jena" />
-        <meta property="og:image" content="https://yourdomain.com/assets/hrushikeshjena-developer-cartoon-ai.png" />
-        <meta property="og:description" content="Meet Hrushikesh Jena, a developer passionate about crafting scalable software solutions." />
+        <meta
+          property="og:image"
+          content="https://yourdomain.com/assets/hrushikeshjena-developer-cartoon-ai.webp"
+        />
+        <meta
+          property="og:description"
+          content="Meet Hrushikesh Jena, a developer passionate about crafting scalable software solutions."
+        />
       </Helmet>
 
       <section id="about" className="py-12">
         <div className="container mx-auto px-4">
           {/* Feature Cards */}
           <div className="flex flex-wrap gap-6 justify-around mb-10">
-            {[
-              {
-                title: "Pixel Perfect",
-                icon: <FiStar className="text-yellow-400 text-2xl" />,
-                description: "I focus on creating aesthetically pleasing and functional designs that align with your brand's identity.",
-              },
-              {
-                title: "High Quality",
-                icon: <FaRegStar className="text-yellow-400 text-2xl" />,
-                description: "I prioritize delivering top-notch, high-quality designs and solutions.",
-              },
-              {
-                title: "Awesome Idea",
-                icon: <FaLightbulb className="text-yellow-400 text-2xl" />,
-                description: "My work is centered on delivering innovative and impactful ideas that truly make a difference.",
-              },
-            ].map((item, i) => (
+            {featureItems.map((item, i) => (
               <div key={i} className="card">
                 <span />
                 <div className="content">
@@ -82,10 +107,7 @@ const AboutSection = () => {
           </div>
 
           {/* Section Title */}
-          <h2
-            className="text-3xl py-6 text-white md:text-4xl font-bold text-center mb-6"
-            data-aos="fade-up"
-          >
+          <h2 className="text-3xl py-6 text-white md:text-4xl font-bold text-center mb-6" data-aos="fade-up">
             Who Am I
           </h2>
 
@@ -99,10 +121,12 @@ const AboutSection = () => {
                 className="w-auto object-cover rounded-lg shadow-lg"
                 data-aos="fade-right"
                 loading="lazy"
+                width="300"
+                height="300"
               />
             </div>
 
-            {/* Description and Cards */}
+            {/* Description and Motion Cards */}
             <div className="md:w-2/3 md:pl-8" ref={contentRef}>
               {[
                 "Hello! I'm Hrushikesh Jena, a passionate software developer with over 2 years of experience in full-stack development. I specialize in building scalable and robust web and mobile applications using modern technologies.",

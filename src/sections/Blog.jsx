@@ -5,6 +5,7 @@ import axios from "axios";
 const BlogSection = () => {
   const [blogPosts, setBlogPosts] = useState([]);
 
+  // Fetch blog posts from API
   useEffect(() => {
     const fetchBlogPosts = async () => {
       try {
@@ -13,55 +14,58 @@ const BlogSection = () => {
         );
         setBlogPosts(response.data?.data || []);
       } catch (error) {
-        alert(`Error fetching data: ${error.message}`);
+        console.error("Failed to fetch blog posts:", error);
       }
     };
 
     fetchBlogPosts();
   }, []);
 
+  // Animate blog posts when they load
   useEffect(() => {
-    anime({
-      targets: ".blog-post",
-      opacity: [0, 1],
-      translateY: [20, 0],
-      easing: "easeOutExpo",
-      delay: anime.stagger(100),
-      duration: 800,
-    });
+    if (blogPosts.length > 0) {
+      anime({
+        targets: ".blog-post",
+        opacity: [0, 1],
+        translateY: [20, 0],
+        easing: "easeOutExpo",
+        delay: anime.stagger(100),
+        duration: 800,
+      });
+    }
   }, [blogPosts]);
 
-  const generateJSONLD = () => {
-    return {
-      "@context": "https://schema.org",
-      "@type": "Blog",
-      name: "Elemnexus Blog",
-      url: "https://www.elemnexus.com/blog",
-      description: "Latest insights and updates from Elemnexus",
-      blogPost: blogPosts.slice(0, 3).map((post) => ({
-        "@type": "BlogPosting",
-        headline: post.title,
-        image: post.image,
-        author: {
-          "@type": "Person",
-          name: post.author || "Unknown",
-        },
-        datePublished: post.createdAt,
-        description: post.description?.slice(0, 150),
-        url: `https://www.elemnexus.com/blog/${post.slug}`,
-      })),
-    };
-  };
+  // JSON-LD schema for SEO
+  const generateJSONLD = () => ({
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: "Elemnexus Blog",
+    url: "https://www.elemnexus.com/blog",
+    description: "Latest insights and updates from Elemnexus",
+    blogPost: blogPosts.slice(0, 3).map((post) => ({
+      "@type": "BlogPosting",
+      headline: post.title,
+      image: post.image,
+      author: {
+        "@type": "Person",
+        name: post.author || "Unknown",
+      },
+      datePublished: post.createdAt,
+      description: post.description?.slice(0, 150) || "",
+      url: `https://www.elemnexus.com/blog/${post.slug}`,
+    })),
+  });
 
   return (
     <section
       id="blog"
-      className="pb-28 bg-black"
+      className="pb-28"
       role="region"
       aria-label="Latest Blog Posts"
     >
       <div className="container mx-auto px-6 md:px-12 text-white">
         <h2 className="text-4xl font-bold text-center mb-12">Insights</h2>
+
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 p-4">
           {blogPosts.length === 0 ? (
             <p className="text-center text-gray-400">
@@ -82,6 +86,9 @@ const BlogSection = () => {
                       alt={post.title || "Blog Post Image"}
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                       itemProp="image"
+                      loading="lazy"
+                      width="400"
+                      height="200"
                     />
                   </div>
                 )}
@@ -112,9 +119,7 @@ const BlogSection = () => {
                   className="text-gray-200 text-sm mt-2"
                   itemProp="description"
                 >
-                  {post.content?.slice(0, 100) ||
-                    "No description available"}
-                  ...
+                  {post.content?.slice(0, 100) || "No description available"}...
                 </p>
 
                 <a
@@ -131,9 +136,12 @@ const BlogSection = () => {
       </div>
 
       {blogPosts.length > 0 && (
-        <script type="application/ld+json">
-          {JSON.stringify(generateJSONLD())}
-        </script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(generateJSONLD()),
+          }}
+        />
       )}
     </section>
   );
