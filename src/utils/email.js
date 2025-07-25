@@ -9,10 +9,10 @@ import emailjs from "@emailjs/browser";
 export const sendEmail = async (formRef) => {
   try {
     const result = await emailjs.sendForm(
-      "YOUR_SERVICE_ID",   
-      "YOUR_TEMPLATE_ID", 
+      "service_9zhilu9",   
+      "template_bm4r8us", 
       formRef.current,    
-      "YOUR_PUBLIC_KEY"    
+      "FZKgRQBe0gunYl1dH"    
     );
     return result;
   } catch (error) {
