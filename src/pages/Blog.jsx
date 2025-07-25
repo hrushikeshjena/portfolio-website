@@ -1,66 +1,59 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import styled, { ThemeProvider } from "styled-components";
+import { darkTheme } from "../utils/Themes";
+import InnerPageHeroSection from "../components/InnerPageHeroSection ";
 
+import StartCanvas from "../components/canvas/Stars";
+import BlogContent from "./BlogContent";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
-function Blog() {
-  const [fetchedBlogs, setFetchedBlogs] = useState([]);
+const Body = styled.div`
+  background-color: ${({ theme }) => theme.bg};
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+`;
 
-  const getData = async () => {
-    try {
-      const response = await axios.get("https://master-admin-backend.onrender.com/api/byadmin/getblog");
-      if (response.data && response.data.length > 0) {
-        setFetchedBlogs(response.data);
-        console.log(fetchedBlogs)
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+const Wrapper = styled.div`
+  padding-bottom: 100px;
+  background: linear-gradient(
+      38.73deg,
+      rgba(204, 0, 187, 0.15) 0%,
+      rgba(201, 32, 184, 0) 50%
+    ),
+    linear-gradient(
+      141.27deg,
+      rgba(0, 70, 209, 0) 50%,
+      rgba(0, 70, 209, 0.15) 100%
+    );
+  width: 100%;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 98%, 0 100%);
+`;
 
-  useEffect(() => {
-    getData();
-  }, []);
-
+const Blog = () => {
   return (
-    <div className="container mx-auto px-6 py-12 ">
-      <h1 className="text-4xl font-extrabold text-white text-center mb-10">
-        Latest Blog Posts
-      </h1>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-     
-        {fetchedBlogs.map((blog, index) => (
-          <div
-            key={index}
-            className="bg-white/10 backdrop-blur-lg border border-white/10 rounded-xl shadow-md overflow-hidden group"
-          >
-            <Link href={`/blog/${blog.slug}`} className="block">
-              <div className="overflow-hidden rounded-t-xl">
-                {blog.imageUrl && (
-                  <img
-                    src={blog.imageUrl}
-                    alt={blog.title}
-                    className="w-full h-60 object-cover transition-all duration-300 group-hover:scale-105 
-                    group-hover:brightness-110 group-hover:shadow-[0_0_15px_rgba(255,255,255,0.5)]"
-                  />
-                )}
-              </div>
-            </Link>
-
-            <div className="p-5">
-              <h2 className="text-xl font-semibold text-white hover:text-green-400 transition duration-200">
-                <Link href={`/blog/${blog.slug}`}>{blog.title}</Link>
-              </h2>
-              <p className="text-gray-400 text-sm mt-2">Author: {blog.author}</p>
-              <p className="text-gray-300 mt-3">{blog.description}</p>
-            </div>
+    <>
+      <ThemeProvider theme={darkTheme}>
+        <Body>
+          <Header />
+          <StartCanvas />
+          <div>
+            <InnerPageHeroSection
+              title="Insights"
+              subtitle="Learn more about our mission and values"
+              imageKeyword="Insights"
+            />
+            <Wrapper>
+              <BlogContent />
+            </Wrapper>
+            <Wrapper>
+              <Footer />
+            </Wrapper>
           </div>
-        ))}
-      </div>
-
-    </div>
+        </Body>
+      </ThemeProvider>
+    </>
   );
-}
+};
 
 export default Blog;

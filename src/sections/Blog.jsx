@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import anime from "animejs";
 import axios from "axios";
 
@@ -35,31 +35,38 @@ const BlogSection = () => {
     return {
       "@context": "https://schema.org",
       "@type": "Blog",
-      "name": "Elemnexus Blog",
-      "url": "https://www.elemnexus.com/blog",
-      "description": "Latest insights and updates from Elemnexus",
-      "blogPost": blogPosts.slice(0, 3).map((post) => ({
+      name: "Elemnexus Blog",
+      url: "https://www.elemnexus.com/blog",
+      description: "Latest insights and updates from Elemnexus",
+      blogPost: blogPosts.slice(0, 3).map((post) => ({
         "@type": "BlogPosting",
-        "headline": post.title,
-        "image": post.image,
-        "author": {
+        headline: post.title,
+        image: post.image,
+        author: {
           "@type": "Person",
-          "name": post.author || "Unknown"
+          name: post.author || "Unknown",
         },
-        "datePublished": post.createdAt,
-        "description": post.description?.slice(0, 150),
-        "url": `https://www.elemnexus.com/blog/${post.slug}`
-      }))
+        datePublished: post.createdAt,
+        description: post.description?.slice(0, 150),
+        url: `https://www.elemnexus.com/blog/${post.slug}`,
+      })),
     };
   };
 
   return (
-    <section id="blog" className="pb-28" role="region" aria-label="Latest Blog Posts">
+    <section
+      id="blog"
+      className="pb-28 bg-black"
+      role="region"
+      aria-label="Latest Blog Posts"
+    >
       <div className="container mx-auto px-6 md:px-12 text-white">
         <h2 className="text-4xl font-bold text-center mb-12">Insights</h2>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 p-4">
           {blogPosts.length === 0 ? (
-            <p className="text-center text-gray-400">No blog posts available.</p>
+            <p className="text-center text-gray-400">
+              No blog posts available.
+            </p>
           ) : (
             blogPosts.slice(0, 3).map((post, index) => (
               <article
@@ -82,7 +89,10 @@ const BlogSection = () => {
                 <div className="flex justify-between items-center mb-4 text-xs text-gray-300">
                   <p>
                     By{" "}
-                    <span className="font-semibold text-white" itemProp="author">
+                    <span
+                      className="font-semibold text-white"
+                      itemProp="author"
+                    >
                       {post.author || "Unknown"}
                     </span>
                   </p>
@@ -98,8 +108,13 @@ const BlogSection = () => {
                   {post.title}
                 </h3>
 
-                <p className="text-gray-200 text-sm mt-2" itemProp="description">
-                  {post.description?.slice(0, 100) || "No description available"}...
+                <p
+                  className="text-gray-200 text-sm mt-2"
+                  itemProp="description"
+                >
+                  {post.content?.slice(0, 100) ||
+                    "No description available"}
+                  ...
                 </p>
 
                 <a
@@ -115,7 +130,6 @@ const BlogSection = () => {
         </div>
       </div>
 
-      {/* Inject JSON-LD only when posts are available */}
       {blogPosts.length > 0 && (
         <script type="application/ld+json">
           {JSON.stringify(generateJSONLD())}
