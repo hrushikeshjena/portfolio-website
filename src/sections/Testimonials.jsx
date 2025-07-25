@@ -1,17 +1,19 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Helmet } from "react-helmet";
 import { testimonials } from "../data/constants";
 
 export default function Testimonials() {
   const [current, setCurrent] = useState(0);
 
-  const prevTestimonial = () => {
+  const prevTestimonial = useCallback(() => {
     setCurrent((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
-  };
+  }, []);
 
-  const nextTestimonial = () => {
+  const nextTestimonial = useCallback(() => {
     setCurrent((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
-  };
+  }, []);
+
+  const testimonial = testimonials[current];
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -23,33 +25,43 @@ export default function Testimonials() {
       "reviewRating": {
         "@type": "Rating",
         "ratingValue": t.rating,
-        "bestRating": 5
+        "bestRating": 5,
       },
       "author": {
         "@type": "Person",
-        "name": t.name
+        "name": t.name,
       },
-      "reviewBody": t.feedback
-    }))
+      "reviewBody": t.feedback,
+    })),
   };
 
   return (
     <>
-      {/* SEO Structured Data */}
+      {/* Structured Data for SEO */}
       <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(jsonLd)}
-        </script>
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
-      {/* Testimonials UI */}
-      <section className="py-16 bg-transparent text-white" aria-labelledby="testimonial-heading">
+      {/* Testimonials Section */}
+      <section
+        className="py-16 bg-transparent text-white"
+        aria-labelledby="testimonial-heading"
+      >
         <div className="max-w-4xl mx-auto text-center px-4">
-          <h2 id="testimonial-heading" className="text-4xl font-bold mb-8 text-gradient">
+          <h2
+            id="testimonial-heading"
+            className="text-4xl font-bold mb-10 text-gradient"
+          >
             What People Say
           </h2>
 
-          <div className="relative flex items-center justify-center">
+          <div
+            className="relative flex items-center justify-center"
+            role="region"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            {/* Previous Button */}
             <button
               className="absolute left-0 p-2 text-gray-400 hover:text-white transition-transform transform hover:scale-110"
               onClick={prevTestimonial}
@@ -58,34 +70,35 @@ export default function Testimonials() {
               <span aria-hidden="true">◀</span>
             </button>
 
-            <blockquote className="w-full max-w-lg p-6 border border-gray-600 rounded-2xl bg-transparent backdrop-blur-lg shadow-md transition-all duration-300 hover:shadow-lg">
+            {/* Testimonial Card */}
+            <blockquote className="w-full max-w-lg px-6 py-8 border border-gray-700 rounded-2xl bg-black/20 backdrop-blur-md shadow-lg transition-all duration-300">
               <img
-                src={testimonials[current].image}
-                alt={`Picture of ${testimonials[current].name}`}
-                className="w-24 h-24 mx-auto rounded-full border-2 border-blue-400"
+                src={testimonial?.image}
+                alt={`Picture of ${testimonial?.name}`}
+                className="w-24 h-24 mx-auto rounded-full border-2 border-blue-500 object-cover"
                 loading="lazy"
               />
-              <p className="text-gray-300 mt-4 text-lg font-light">
-                “{testimonials[current].feedback}”
-              </p>
+
+              <p className="text-gray-200 mt-6 text-lg italic">“{testimonial?.feedback}”</p>
+
               <div
-                className="flex justify-center mt-2"
-                aria-label={`Rating: ${testimonials[current].rating} out of 5`}
+                className="flex justify-center mt-3"
+                aria-label={`Rating: ${testimonial?.rating} out of 5`}
               >
-                {Array.from({ length: testimonials[current].rating }).map((_, i) => (
-                  <span key={i} className="text-yellow-400 text-xl" aria-hidden="true">★</span>
+                {Array.from({ length: testimonial?.rating || 0 }).map((_, i) => (
+                  <span key={i} className="text-yellow-400 text-xl" aria-hidden="true">
+                    ★
+                  </span>
                 ))}
               </div>
+
               <footer className="mt-4">
-                <h3 className="font-semibold text-lg text-blue-300">
-                  {testimonials[current].name}
-                </h3>
-                {/* <p className="text-sm text-gray-400">
-                  {testimonials[current].position}
-                </p> */}
+                <h3 className="font-semibold text-blue-300 text-lg">{testimonial?.name}</h3>
+                {/* <p className="text-sm text-gray-400">{testimonial?.position}</p> */}
               </footer>
             </blockquote>
 
+            {/* Next Button */}
             <button
               className="absolute right-0 p-2 text-gray-400 hover:text-white transition-transform transform hover:scale-110"
               onClick={nextTestimonial}
